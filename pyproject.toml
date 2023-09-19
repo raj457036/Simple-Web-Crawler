@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "webcrawler"
-version = "0.1.0"
+version = "0.0.1"
 description = "a simple web crawler"
 authors = ["Raj <rs457036@gmail.com>"]
 license = "MIT"
