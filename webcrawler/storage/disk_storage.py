@@ -6,9 +6,9 @@ import aiofiles as aiof
 from pydantic.version import VERSION
 from typing_extensions import override
 
-from logger import logger as root_logger
-from models.page_content import PageContent
-from storage.base import PageStorage
+from webcrawler.logger import logger as root_logger
+from webcrawler.models.page_content import PageContent
+from webcrawler.storage.base import PageStorage
 
 
 class DiskPageStorage(PageStorage):

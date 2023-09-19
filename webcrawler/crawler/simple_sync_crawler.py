@@ -11,13 +11,12 @@ from bs4 import BeautifulSoup
 from pydantic import AnyHttpUrl
 from typing_extensions import override
 
-from crawler.abstract import AbstractSyncCrawler
-from crawler.robot_parser import RobotParser
-from logger import logger as root_logger
-from models.crawler_config import CrawlerConfig
-from models.page_content import PageContent
-from storage import InMemoryPageStorage, PageStorage
-from utils import bf4_to_md
+from ..logger import logger as root_logger
+from ..models import CrawlerConfig, PageContent
+from ..storage import InMemoryPageStorage, PageStorage
+from ..utils import bf4_to_md
+from .abstract import AbstractSyncCrawler
+from .robot_parser import RobotParser
 
 
 class SimpleSyncCrawler(AbstractSyncCrawler):
@@ -175,7 +174,7 @@ class SimpleSyncCrawler(AbstractSyncCrawler):
         content: BeautifulSoup
     ):
 
-        if self.config.content_type == "md" and (md := bf4_to_md(content)):
+        if self.config.output_type == "md" and (md := bf4_to_md(content)):
             hash = sha256(md.encode("utf-8")).hexdigest()
             page_content = PageContent(
                 url=AnyHttpUrl(url),
@@ -185,7 +184,7 @@ class SimpleSyncCrawler(AbstractSyncCrawler):
                 links=list(connected_links)
             )
             self.page_storage.save(page_content)
-        elif self.config.content_type == "html" and (html := str(content)):
+        elif self.config.output_type == "html" and (html := str(content)):
             hash = sha256(html.encode("utf-8")).hexdigest()
             page_content = PageContent(
                 url=AnyHttpUrl(url),

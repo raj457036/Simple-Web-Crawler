@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
-from models.crawler_config import CrawlerConfig
-from storage import PageStorage
+from ..models import CrawlerConfig
+from ..storage import PageStorage
 
 
 class __Crawler(ABC):

@@ -9,13 +9,12 @@ from bs4 import BeautifulSoup
 from pydantic import AnyHttpUrl
 from typing_extensions import override
 
-from crawler.abstract import AbstractAsyncCrawler
-from crawler.robot_parser import RobotParser
-from logger import logger as root_logger
-from models.crawler_config import CrawlerConfig
-from models.page_content import PageContent
-from storage import InMemoryPageStorage, PageStorage
-from utils import bf4_to_md
+from ..logger import logger as root_logger
+from ..models import CrawlerConfig, PageContent
+from ..storage import InMemoryPageStorage, PageStorage
+from ..utils import bf4_to_md
+from .abstract import AbstractAsyncCrawler
+from .robot_parser import RobotParser
 
 
 class SimpleAsyncCrawler(AbstractAsyncCrawler):
@@ -172,7 +171,7 @@ class SimpleAsyncCrawler(AbstractAsyncCrawler):
         content: BeautifulSoup
     ):
 
-        if self.config.content_type == "md" and (md := bf4_to_md(content)):
+        if self.config.output_type == "md" and (md := bf4_to_md(content)):
             hash = sha256(md.encode("utf-8")).hexdigest()
             page_content = PageContent(
                 url=AnyHttpUrl(url),
@@ -182,7 +181,7 @@ class SimpleAsyncCrawler(AbstractAsyncCrawler):
                 links=list(connected_links)
             )
             await self.page_storage.asave(page_content)
-        elif self.config.content_type == "html" and (html := str(content)):
+        elif self.config.output_type == "html" and (html := str(content)):
             hash = sha256(html.encode("utf-8")).hexdigest()
             page_content = PageContent(
                 url=AnyHttpUrl(url),

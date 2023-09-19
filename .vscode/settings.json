@@ -8,6 +8,7 @@
     "forrester",
     "httpx",
     "markdownify",
-    "pydantic"
+    "pydantic",
+    "webcrawler"
   ]
 }

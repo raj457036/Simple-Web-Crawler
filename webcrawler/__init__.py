@@ -1,7 +1,7 @@
-from crawler import *
-from logger import logger as root_logger
-from models import *
-from storage import *
+from .crawler import *
+from .logger import logger as root_logger
+from .models import *
+from .storage import *
 
 __all__ = [
     # crawler

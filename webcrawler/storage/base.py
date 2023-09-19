@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod, abstractproperty
 from typing import Callable
 
-from models.page_content import PageContent
+from webcrawler.models.page_content import PageContent
 
 
 class PageStorage(ABC):

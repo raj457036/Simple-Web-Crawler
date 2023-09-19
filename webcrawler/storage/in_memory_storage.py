@@ -2,8 +2,8 @@ from typing import Callable
 
 from typing_extensions import override
 
-from models.page_content import PageContent
-from storage.base import PageStorage
+from webcrawler.models.page_content import PageContent
+from webcrawler.storage.base import PageStorage
 
 
 class InMemoryPageStorage(PageStorage):

@@ -11,10 +11,9 @@ class CrawlerConfig(BaseModel):
     from_root: bool = False
     max_links: int | None = None
     verify_ssl: bool = True
-    disable_verify_ssl_on_fail: bool = False
-    depth: int | None = None
+    # depth: int | None = None
     user_agent: str = "*"
-    content_type: Literal["md", "html"] = "md"
+    output_type: Literal["md", "html"] = "md"
 
-    # Wait for a maximum of 10 seconds for a response. 'None' means no timeout
-    timeout: int | None = 10
+    # Wait for a maximum of `timeout` seconds for a response. 'None' means no timeout
+    timeout: int | None = 25

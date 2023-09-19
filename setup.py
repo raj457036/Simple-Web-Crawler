@@ -14,7 +14,10 @@ setup(
     maintainer="Raj Singh",
     maintainer_email="rs457036@gmail.com",
     license="MIT",
-    packages=find_packages(exclude=("tests", "tests.*")),
+    packages=find_packages(
+        where="./webcrawler",
+        exclude=("tests", "tests.*"),
+    ),
     include_package_data=True,
     python_requires=">=3.10",
     install_requires=[
