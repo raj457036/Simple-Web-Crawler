@@ -35,6 +35,9 @@ crawler.run()
 print(*crawler.page_storage.keys, sep="\n")
 ```
 
+- Async Example: [test/simple_async_crawler.py](test/simple_async_crawler.py)
+- Sync Example: [test/simple_sync_crawler.py](test/simple_sync_crawler.py)
+
 ## Features
 
 - [x] Sync and Async requests
